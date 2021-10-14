@@ -19,5 +19,30 @@ def Profile(Motifs):
     for i in "ACGT":
         for j in range(k):
             profile[i][j]=profile[i][j]/t   
-    # insert your code here
     return profile
+def Consensus(Motifs):
+    k = len(Motifs[0])
+    count = Count(Motifs)
+    consensus = ""
+    for j in range(k):
+        m = 0
+        frequentSymbol = ""
+        for symbol in "ACGT":
+            if count[symbol][j] > m:
+                m = count[symbol][j]
+                frequentSymbol = symbol
+        consensus += frequentSymbol
+    return consensus
+# Output: The score of these k-mers.
+def Score(Motifs):
+    score=[]
+    k = len(Motifs[0])
+    t = len(Motifs)
+    consensus=Consensus(Motifs)
+    print(consensus)
+    for i in range(k):
+        score.append(0)
+        for j in range(t):
+            if (Motifs[j][i]!=consensus[i]):
+                score[i]+=1
+    return sum(score)
