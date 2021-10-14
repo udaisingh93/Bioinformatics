@@ -46,3 +46,11 @@ def Score(Motifs):
             if (Motifs[j][i]!=consensus[i]):
                 score[i]+=1
     return sum(score)
+# Input:  String Text and profile matrix Profile
+
+# Output: Pr(Text, Profile)
+def Pr(Text, Profile):
+    p=1
+    for i in range(len(Text)):
+        p*=Profile[Text[i]][i]
+    return p
